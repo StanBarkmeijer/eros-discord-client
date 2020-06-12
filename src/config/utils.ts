@@ -12,12 +12,8 @@ const utils = {
 
         if (message.mentions.members.size > 0) {
             member = message.mentions.members.first();
-        }
-
-        if (args[0]) {
-            message.guild.members
-                .fetch(args[0])
-                .then((m: GuildMember) => member = m);
+        } else if (args[0]) {
+            member = message.guild.members.cache.get(args[0]);
         }
 
         if (!member) {

@@ -17,7 +17,7 @@ class Avatar extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        const member = await utils.getMemberFromMessage(message);
+        const member = utils.getMemberFromMessage(message);
         
         const embed = new MessageEmbed()
             .setImage(member.user.displayAvatarURL({ format: "png", size: 1024 }))
