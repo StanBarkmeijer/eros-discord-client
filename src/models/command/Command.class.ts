@@ -2,7 +2,7 @@ import ErosClient from "../discord/ErosClient";
 import { Message } from "discord.js";
 import CommandInterface from "./Command.interface";
 
-class Command {
+class Command implements CommandInterface {
 
     readonly client: ErosClient;
 
@@ -24,7 +24,7 @@ class Command {
         this.dmChannel = data.dmChannel ?? false;
     }
 
-    public run(message: Message, args: string[]) {
+    public async run(message: Message, args: string[]) {
         throw new Error("No run function implemented");
     }
 

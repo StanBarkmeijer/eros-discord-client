@@ -12,6 +12,7 @@ class ErosClient extends Client {
 		super.login(token);
 		
 		this.commands = this.loadCommands();
+		this.loadEvents();
 	}
 
 	private loadCommands(): Map<string, Command> {
@@ -49,6 +50,17 @@ class ErosClient extends Client {
 		console.log("\n")
 
 		return map;
+	}
+
+	private loadEvents(): void {
+		const events = readdirSync("./events/").filter((f: string) => f.endsWith(".js"));
+
+		for (let file of events) {
+			const evt = require(`../events/${file}`);
+
+			const eName: any = file.split(".")[0];
+			this.on(eName, evt.bind(null, this));
+		}
 	}
 
 }

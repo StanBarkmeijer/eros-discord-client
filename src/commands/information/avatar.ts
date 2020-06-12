@@ -1,5 +1,6 @@
 import ErosClient from "../../models/discord/ErosClient";
 import Command from "../../models/command/Command.class";
+import { Message } from "discord.js";
 
 class Avatar extends Command {
 
@@ -10,6 +11,10 @@ class Avatar extends Command {
             description: "Returns your avatar - or the person you mentioned",
         });
     }
+
+    async run(message: Message, args: string[]) {
+        
+    }   
 
 }
 

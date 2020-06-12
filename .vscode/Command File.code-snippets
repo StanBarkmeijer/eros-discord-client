@@ -1,0 +1,31 @@
+{
+	"Discord Bot Command": {
+		"prefix": "cmd",
+		"body": [
+			"import ErosClient from \"../../models/discord/ErosClient\";",
+			"import Command from \"../../models/command/Command.class\";",
+			"import { Message } from \"discord.js\";",
+			"",
+			"class ${TM_FILENAME_BASE} extends Command {",
+			"",
+			"    constructor(client: ErosClient) {",
+			"        super(client, {",
+			"            name: '$1', ",
+			"            aliases: '$2', ",
+			"            description: '$3', ",
+			"            usage: '$4', ",
+			"            permissionLevel: '$5', ",
+			"            dmChannel: $6, ",
+			"        });",
+			"    }",
+			"",
+			"    async run(message: Message, args: string[]) {",
+			"",
+			"    }",
+			"}",
+			"",
+			"export = ${TM_FILENAME_BASE}"
+		],
+		"description": "Discord bot command boilerplate"
+	}
+}
