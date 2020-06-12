@@ -1,5 +1,5 @@
 import ErosClient from "../discord/ErosClient";
-import { Message } from "discord.js";
+import { Message, PermissionResolvable } from "discord.js";
 import CommandInterface from "./Command.interface";
 
 class Command implements CommandInterface {
@@ -10,8 +10,7 @@ class Command implements CommandInterface {
     readonly aliases: string[];
     readonly description: string;
     readonly usage: string
-    readonly permissionLevel: string;
-    readonly dmChannel: boolean;
+    readonly permissionLevel: PermissionResolvable;
 
     constructor(client: ErosClient, data: CommandInterface) {
         this.client = client;
@@ -20,8 +19,7 @@ class Command implements CommandInterface {
         this.aliases = data.aliases ?? [];
         this.description = data.description;
         this.usage = data.usage ?? "No arguments";
-        this.permissionLevel = data.permissionLevel ?? "SEND_MESSAGES";
-        this.dmChannel = data.dmChannel ?? false;
+        this.permissionLevel = data.permissionLevel ?? ["SEND_MESSAGES"];
     }
 
     public async run(message: Message, args: string[]) {
