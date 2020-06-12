@@ -16,9 +16,7 @@ const utils = {
             member = message.guild.members.cache.get(args[0]);
         }
 
-        if (!member) {
-            return message.member;
-        }
+        return member ?? message.member;
     }
 }
 
