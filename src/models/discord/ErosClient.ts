@@ -56,8 +56,6 @@ class ErosClient extends Client {
 				try {
 					let pull = require(`../../commands/${subFolder}/${file}`);
 					pull = new pull(this);
-	
-					console.log(map);
 
 					map.set(pull.name, pull);
 
@@ -69,7 +67,6 @@ class ErosClient extends Client {
 
 					logger.info(`-- ${file} ✅`);
 				} catch(e) {
-					logger.error(e);
 					logger.info(`-- ${file} ❌`);
 				}
 
