@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Push to server
-        uses: StanBarkmeijer/eros-discord-client/.github/workflows/main
+        uses: ./.github/workflows/main
         with: 
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}
