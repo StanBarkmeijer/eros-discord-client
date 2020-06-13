@@ -2,12 +2,12 @@ name: CI
 on: [push]
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/master'
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v1
       - name: Push to server
-        uses: StanBarkmeijer/eros-discord-client@dev
+        uses: StanBarkmeijer/eros-discord-client@master
         with: 
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}
