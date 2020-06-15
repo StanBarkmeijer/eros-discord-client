@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document, Model } from "mongoose";
 
 const GuildSchema: Schema = new Schema({
     guildID: {
@@ -16,6 +16,6 @@ const GuildSchema: Schema = new Schema({
     }
 });
 
-const Guild: any = model("guild", GuildSchema);
+const Guild: Model<Document> = model("guild", GuildSchema);
 
 export = Guild;
