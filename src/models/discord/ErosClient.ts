@@ -69,7 +69,6 @@ class ErosClient extends Client {
 
 					logger.info(`-- ${file} ✅`);
 				} catch(e) {
-					logger.error(e);
 					logger.info(`-- ${file} ❌`);
 				}
 
