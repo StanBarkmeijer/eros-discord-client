@@ -8,7 +8,6 @@ class ErosClient extends Client {
 
 	readonly commands: Collection<string, Command>;
 	readonly aliases: Collection<string, string> = new Collection();
-	public database: Connection = null;
 
 	constructor(token: string) {
 		super();

@@ -1,6 +1,10 @@
 import { config } from "dotenv";
-import ErosClient from "./models/discord/ErosClient";
 import { connect } from "mongoose";
+import { Structures } from "discord.js";
+
+import ErosClient from "./models/discord/ErosClient";
+import Member from "./models/discord/Member";
+import Guild from "./models/discord/Guild";
 
 config({ path: "../.env"});
 
@@ -13,4 +17,7 @@ connect(str, {
 .then((res: any) => console.log("✅ Database connection successful"))
 .catch((err: any) => console.log(err));
 
-const client: ErosClient = new ErosClient(process.env.DISCORD_TOKEN);
+Structures.extend("GuildMember", Member);
+Structures.extend("Guild", Guild);
+
+new ErosClient(process.env.DISCORD_TOKEN);

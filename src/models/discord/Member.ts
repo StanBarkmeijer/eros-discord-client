@@ -1,22 +1,37 @@
-import { Structures, GuildMember, Guild } from "discord.js";
+import { GuildMember, Guild } from "discord.js";
 import ErosClient from "./ErosClient";
-import * as MemberModel from "../../models/db/Member.model";
 
-Structures.extend("GuildMember", (member: typeof GuildMember) => {
-    class NewGuild extends member {
+const MemberModel = require("../../models/db/Member.model");
+
+export = (member: typeof GuildMember) => {
+    class NewMember extends member {
 
         public money: Number;
 
         constructor(client: ErosClient, data: object, guild: Guild) {
             super(client, data, guild);
 
-            MemberModel.findOne({ guildID: this.id })
-                .then((data: any) => {
-                    this.money = data.money;
-                });
+            this.getFromDatabase(guild);
+        }
+
+        private getFromDatabase(guild: Guild): void {
+            MemberModel.findOne({ 
+                userID: this.id, 
+                guildID: this.id 
+            }).then((data: any) => {
+                if (!data) {
+                    return MemberModel.create({
+                        userID: this.id,
+                        guildID: guild.id
+                    }).then((data: any) => this.money = data.balance)
+                      .catch((err: any) => console.log(err));
+                }
+
+                this.money = data.balance;
+            }).catch((err: any) => console.log(err));
         }
 
     }
 
-    return NewGuild;
-})
+    return NewMember;
+};
