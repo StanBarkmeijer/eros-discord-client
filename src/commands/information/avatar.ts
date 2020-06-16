@@ -20,7 +20,7 @@ class Avatar extends Command {
         const member = utils.getMemberFromMessage(message);
         
         const embed = new MessageEmbed()
-            .setImage(member.user.displayAvatarURL({ format: "png", size: 1024 }))
+            .setImage(member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setTitle(`${member.displayName}'s profile picture`);
 
         getColors(member.user.displayAvatarURL({ format: "png" })).then((colors: any) => {
