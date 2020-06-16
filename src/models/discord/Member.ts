@@ -15,11 +15,13 @@ export = (member: typeof GuildMember) => {
         }
 
         private getFromDatabase(guild: Guild): void {
+            console.log(this.id, guild.id);
+
             MemberModel.findOne({ 
                 userID: this.id, 
-                guildID: this.id 
+                guildID: guild.id 
             }).then((data: any) => {
-                if (!data) {
+                if (!data || !data.userID) {
                     return MemberModel.create({
                         userID: this.id,
                         guildID: guild.id
