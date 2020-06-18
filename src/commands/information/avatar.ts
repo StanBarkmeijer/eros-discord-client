@@ -12,7 +12,8 @@ class Avatar extends Command {
             name: "avatar",
             aliases: ["av"],
             description: "Returns your avatar - or the person you mentioned",
-            usage: "<avatar [ID|MENTION]"
+            usage: "<avatar [id | mention]",
+            category: "information"
         });
     }
 

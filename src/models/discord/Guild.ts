@@ -7,7 +7,7 @@ export = (guild: typeof Guild) => {
     class NewGuild extends guild {
 
         public prefix: string;
-        public logChannel: Channel;
+        public logChannel: Channel | null;
 
         constructor(client: ErosClient, data: object) {
             super(client, data);

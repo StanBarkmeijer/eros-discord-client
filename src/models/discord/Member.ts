@@ -15,8 +15,6 @@ export = (member: typeof GuildMember) => {
         }
 
         private getFromDatabase(guild: Guild): void {
-            console.log(this.id, guild.id);
-
             MemberModel.findOne({ 
                 userID: this.id, 
                 guildID: guild.id 

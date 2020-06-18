@@ -9,6 +9,7 @@ class Command implements CommandInterface {
     readonly name: string;
     readonly aliases: string[];
     readonly description: string;
+    readonly category: string;
     readonly usage: string
     readonly permissionLevel: PermissionResolvable;
 
@@ -18,6 +19,7 @@ class Command implements CommandInterface {
         this.name = data.name;
         this.aliases = data.aliases ?? [];
         this.description = data.description;
+        this.category = data.category ?? "N/A"
         this.usage = data.usage ?? "No arguments";
         this.permissionLevel = data.permissionLevel ?? ["SEND_MESSAGES"];
     }
