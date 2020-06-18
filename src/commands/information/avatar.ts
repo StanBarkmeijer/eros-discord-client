@@ -12,7 +12,8 @@ class Avatar extends Command {
             name: "avatar",
             aliases: ["av"],
             description: "Returns your avatar - or the person you mentioned",
-            usage: "<avatar [ID|MENTION]"
+            usage: "<avatar [id | mention]",
+            category: "information"
         });
     }
 
@@ -20,7 +21,7 @@ class Avatar extends Command {
         const member = utils.getMemberFromMessage(message);
         
         const embed = new MessageEmbed()
-            .setImage(member.user.displayAvatarURL({ format: "png", size: 1024 }))
+            .setImage(member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setTitle(`${member.displayName}'s profile picture`);
 
         getColors(member.user.displayAvatarURL({ format: "png" })).then((colors: any) => {
