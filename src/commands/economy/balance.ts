@@ -15,9 +15,9 @@ class balance extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        const member: NewMember = (message.member as NewMember);
+        const member: NewMember = message.member as NewMember;
 
-        const embed = new MessageEmbed()
+        const embed: MessageEmbed = new MessageEmbed()
             .setColor("RED")
             .setAuthor(message.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription(`Balance: ${member.getMoney()} 💸`);

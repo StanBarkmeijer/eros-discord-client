@@ -61,7 +61,7 @@ function getCMD(client: ErosClient, searchQuery: string): MessageEmbed {
         embed.setFooter(`Syntax: <> = required, [] = optional`);
     }
 
-    embed.setTitle(`**Command:** ${command.name}`);
+    embed.setTitle(`${command.name}`);
     embed.setURL(`https://github.com/StanBarkmeijer/eros-discord-client/tree/master/src/commands/${command.category}/${command.name}.ts`);
     embed.setDescription(info);
 
