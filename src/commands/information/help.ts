@@ -31,7 +31,7 @@ function getAll(client: ErosClient): MessageEmbed {
             .join("\n");
     }
 
-    const info = readdirSync("../src/commands")
+    const info = readdirSync("../src/commands/")
         .map((cat: string) => `**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
         .reduce((string: string, category: string) => string + "\n" + category);
 

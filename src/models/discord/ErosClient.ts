@@ -74,9 +74,9 @@ class ErosClient extends Client {
 
 			}
 
-		}
+			console.log("\n");
 
-		console.log("\n")
+		}
 
 		return map;
 	}
