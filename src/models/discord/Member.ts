@@ -24,11 +24,11 @@ class NewMember extends GuildMember {
                     userID: this.id,
                     guildID: this.guild.id
                 }).then((data: any) => this.money = data.balance)
-                  .catch((err: any) => console.log(err));
+                  .catch((err: Error) => console.log(err));
             }
 
             this.money = data.balance;
-        }).catch((err: any) => console.log(err));
+        }).catch((err: Error) => console.log(err));
     }
 
     public getMoney(): number {
@@ -37,7 +37,7 @@ class NewMember extends GuildMember {
             guildID: this.guild.id
         }).then((data: any) => {
             this.money = data.balance ?? 0; 
-        }).catch((err: any) => console.log(err));
+        }).catch((err: Error) => console.log(err));
         
         return this.money;
     }
@@ -50,7 +50,7 @@ class NewMember extends GuildMember {
         { new: true, upsert: true })
             .then((data: any) => {
                 this.money = data.balance
-            }).catch((err: any) => console.log(err));
+            }).catch((err: Error) => console.log(err));
     }
 
 }

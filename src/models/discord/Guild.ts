@@ -25,7 +25,7 @@ class NewGuild extends Guild {
                 }).then((data: any) => { 
                     this.prefix = data.prefix;
                     this.logChannel = client.channels.cache.get(data.logChannel);
-                }).catch((err: any) => console.log(err));
+                }).catch((err: Error) => console.log(err));
             }
 
             this.prefix = data.prefix;
@@ -52,7 +52,7 @@ class NewGuild extends Guild {
                 { new: true , upsert: true}
             ).then((data: any) => {
                 this.prefix = data.prefix;
-            }).catch((err: any) => Promise.reject(err));
+            }).catch((err: Error) => Promise.reject(err));
 
             return Promise.resolve(`Old prefix: \`${this.getPrefix()}\`\nNew prefix: \`${prefix}\``);
         }
