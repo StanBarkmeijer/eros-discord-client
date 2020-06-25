@@ -5,13 +5,9 @@ import NewGuild from "../models/discord/Guild";
 import { erosRed } from "../colors";
 
 export = async (client: ErosClient, message: Message) => {
-    const prefix = (message.guild as NewGuild).getPrefix();
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-    const cmd = args.shift().toLowerCase();
-    
-    let command;
-
     if (message.author.bot || !message.guild) return;
+
+    const prefix: string = (message.guild as NewGuild).getPrefix();
 
     if (!message.content.startsWith(prefix)) {
         const money: number = (message.member as NewMember).getMoney();
@@ -33,6 +29,11 @@ export = async (client: ErosClient, message: Message) => {
 
         return;
     }
+
+    const args: string[] = message.content.slice(prefix.length).trim().split(/ +/g);
+    const cmd: string = args.shift().toLowerCase();
+    
+    let command;
 
     if (cmd.length === 0) return;
     if (client.commands.has(cmd)) command = client.commands.get(cmd);

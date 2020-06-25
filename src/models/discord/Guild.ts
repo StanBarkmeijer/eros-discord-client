@@ -1,4 +1,4 @@
-import { Guild, Channel } from "discord.js";
+import { Guild, Channel, Snowflake } from "discord.js";
 import ErosClient from "./ErosClient";
 import { Model, Document } from "mongoose";
 
@@ -36,11 +36,17 @@ class NewGuild extends Guild {
     public getPrefix(): string {
         GuildModel.findOne({
             guildID: this.id
-        }).then((data: any) => {
-            this.prefix = data.prefix ?? "<";
-        });
+        }).then((data: any) => this.prefix = data.prefix ?? "<" );
 
         return this.prefix;
+    }
+
+    public getLogChannel(): string {
+        GuildModel.findOne({
+            guildID: this.id
+        }).then((data: any) => this.logChannel = this.channels.cache.get(data.logChannel));
+
+        return this.logChannel.id;
     }
 
     public async setPrefix(prefix: string): Promise<string> {
@@ -50,12 +56,27 @@ class NewGuild extends Guild {
                 { guildID: this.id }, 
                 { prefix: prefix }, 
                 { new: true , upsert: true}
-            ).then((data: any) => {
-                this.prefix = data.prefix;
-            }).catch((err: Error) => Promise.reject(err));
+            ).then((data: any) =>  this.prefix = data.prefix )
+             .catch((err: Error) => Promise.reject(err));
 
             return Promise.resolve(`Old prefix: \`${this.getPrefix()}\`\nNew prefix: \`${prefix}\``);
         }
+    }
+
+    public async setLogchannel(channel: string): Promise<string> {
+        GuildModel.findOneAndUpdate(
+            { guildID: this.id },
+            { logChannel: channel },
+            { new: true, upsert: true }
+        ).then((data: any) => this.logChannel = this.channels.cache.get(data.logChannel))
+         .catch((err: Error) => Promise.reject(err));
+
+        const oldLog = this.channels.cache.get(this.getLogChannel());
+        const newLog = this.channels.cache.get(channel);
+
+        if (oldLog.id === newLog.id) return Promise.reject(`You tried to set the new log channel to the same log channel as before.`);
+
+        return Promise.resolve(`Old log channel: \`${oldLog.name}\`\nNew log channel: \`${newLog.name}\``);
     }
 
 }

@@ -18,7 +18,7 @@ class prefix extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        if (args.length > 1) return this.client.warning(message.channel, "The prefix must be only one word");
+        if (args.length > 1) return this.client.warning(message.channel, "The prefix must be only **1** word");
 
         const prefix = args[0];
         const guild: NewGuild = message.guild as NewGuild;
