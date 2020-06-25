@@ -24,7 +24,7 @@ class Command implements CommandInterface {
         this.permissionLevel = data.permissionLevel ?? ["SEND_MESSAGES"];
     }
 
-    public async run(message: Message, args: string[]) {
+    public async run(message: Message, args: string[]): Promise<void | Message> {
         throw new Error("No run function implemented");
     }
 

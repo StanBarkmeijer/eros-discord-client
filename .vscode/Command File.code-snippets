@@ -25,7 +25,7 @@
 			"    }",
 			"}",
 			"",
-			"export = ${TM_FILENAME_BASE}"
+			"export = ${TM_FILENAME_BASE};"
 		],
 		"description": "Discord bot command boilerplate"
 	}
