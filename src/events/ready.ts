@@ -4,6 +4,11 @@ import logger from "../config/logger";
 let firstStart: boolean = true;
 
 export = async (client: ErosClient) => {
+    const chan: any = client.channels.cache.get("725785892542742588");
+    chan
+        .send(`Online: ${new Date().toJSON()}`)
+        .catch((err: Error) => logger.error(err));
+
     if (firstStart) {
         firstStart = false;
 
