@@ -2,6 +2,7 @@ import ErosClient from "../../models/discord/ErosClient";
 import Command from "../../models/command/Command.class";
 import { Message, MessageEmbed } from "discord.js";
 import NewMember from "../../models/discord/Member";
+import { getMemberFromMessage } from "../../config/utils";
 
 class balance extends Command {
 
@@ -15,11 +16,11 @@ class balance extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        const member: NewMember = message.member as NewMember;
+        const member: NewMember = getMemberFromMessage(message) as NewMember;
 
         const embed: MessageEmbed = new MessageEmbed()
             .setColor("RED")
-            .setAuthor(message.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
+            .setAuthor(member.displayName, member.user.displayAvatarURL({ dynamic: true }))
             .setDescription(`Balance: ${member.getMoney()} 💸`);
 
         message.channel.send(embed)

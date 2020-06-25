@@ -22,7 +22,8 @@ class help extends Command {
 }
 
 function getAll(client: ErosClient): MessageEmbed {
-    const embed = new MessageEmbed();
+    const embed = new MessageEmbed()
+        .setColor("RED");
 
     const commands = (category: string) => {
         return client.commands
@@ -33,14 +34,15 @@ function getAll(client: ErosClient): MessageEmbed {
 
     const info = readdirSync("../src/commands")
         .filter((cat: string) => cat !== "dev")
-        .map((cat: string) => `**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
+        .map((cat: string) => `**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}\n`)
         .reduce((string: string, category: string) => string + "\n" + category);
 
     return embed.setDescription(info);
 }
 
 function getCMD(client: ErosClient, searchQuery: string): MessageEmbed {
-    const embed = new MessageEmbed();
+    const embed = new MessageEmbed()
+        .setColor("RED");
 
     const command: Command = client.commands.get(searchQuery.toLowerCase()) 
         || client.commands.get(client.aliases.get(searchQuery.toLowerCase()));
@@ -49,7 +51,6 @@ function getCMD(client: ErosClient, searchQuery: string): MessageEmbed {
 
     if (!command) {
         return embed
-            .setColor("RED")
             .setDescription(noInfo);
     }
 

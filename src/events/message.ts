@@ -14,7 +14,7 @@ export = async (client: ErosClient, message: Message) => {
 
     if (!message.content.startsWith(prefix)) {
         const money: number = (message.member as NewMember).getMoney();
-        const chance: boolean = ((Math.random() * 10)|0) < 2;
+        const chance: boolean = ((Math.random() * 20)|0) < 2;
 
         if (chance) {
             const toAdd: number = (Math.random() * 50)|0;
