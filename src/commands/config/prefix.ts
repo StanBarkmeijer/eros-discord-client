@@ -2,6 +2,7 @@ import ErosClient from "../../models/discord/ErosClient";
 import Command from "../../models/command/Command.class";
 import { Message, MessageEmbed } from "discord.js";
 import NewGuild from "../../models/discord/Guild";
+import { succesGreen } from "../../colors";
 
 class prefix extends Command {
 
@@ -23,7 +24,7 @@ class prefix extends Command {
         const guild: NewGuild = message.guild as NewGuild;
 
         const embed: MessageEmbed = new MessageEmbed()
-            .setColor("GREEN")
+            .setColor(succesGreen)
             .setTimestamp()
             .setFooter(`Prefix set by ${message.member.displayName}`, message.author.displayAvatarURL())
 

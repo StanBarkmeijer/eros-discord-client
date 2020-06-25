@@ -3,6 +3,7 @@ import Command from "../../models/command/Command.class";
 import { Message, MessageEmbed } from "discord.js";
 import NewMember from "../../models/discord/Member";
 import { getMemberFromMessage } from "../../config/utils";
+import { erosRed } from "../../colors";
 
 class balance extends Command {
 
@@ -19,7 +20,7 @@ class balance extends Command {
         const member: NewMember = getMemberFromMessage(message) as NewMember;
 
         const embed: MessageEmbed = new MessageEmbed()
-            .setColor("RED")
+            .setColor(erosRed)
             .setAuthor(member.displayName, member.user.displayAvatarURL({ dynamic: true }))
             .setDescription(`Balance: ${member.getMoney()} 💸`);
 

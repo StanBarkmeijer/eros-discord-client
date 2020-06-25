@@ -3,6 +3,7 @@ import Command from "../../models/command/Command.class";
 
 import { Message, MessageEmbed } from "discord.js";
 import { readdirSync } from "fs";
+import { erosRed } from "../../colors";
 
 class help extends Command {
 
@@ -23,7 +24,7 @@ class help extends Command {
 
 function getAll(client: ErosClient): MessageEmbed {
     const embed = new MessageEmbed()
-        .setColor("RED");
+        .setColor(erosRed);
 
     const commands = (category: string) => {
         return client.commands
@@ -42,7 +43,7 @@ function getAll(client: ErosClient): MessageEmbed {
 
 function getCMD(client: ErosClient, searchQuery: string): MessageEmbed {
     const embed = new MessageEmbed()
-        .setColor("RED");
+        .setColor(erosRed);
 
     const command: Command = client.commands.get(searchQuery.toLowerCase()) 
         || client.commands.get(client.aliases.get(searchQuery.toLowerCase()));

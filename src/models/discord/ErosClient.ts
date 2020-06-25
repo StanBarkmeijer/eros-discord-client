@@ -3,6 +3,7 @@ import Command from "../command/Command.class";
 import { readdirSync } from "fs";
 import logger from "../../config/logger";
 import { connect, Connection } from "mongoose";
+import { errorRed, warningOrange } from "../../colors";
 
 class ErosClient extends Client {
 
@@ -20,7 +21,7 @@ class ErosClient extends Client {
 
 	public warning(channel: TextChannel | DMChannel | NewsChannel, err: string) {
 		const embed = new MessageEmbed()
-			.setColor("ORANGE")
+			.setColor(warningOrange)
 			.setTimestamp()
 			.setFooter(this.user.username, this.user.displayAvatarURL())
 			.setDescription(err);
@@ -30,7 +31,7 @@ class ErosClient extends Client {
 
 	public error(channel: TextChannel | DMChannel | NewsChannel, err: string) {
 		const embed = new MessageEmbed()
-			.setColor("RED")
+			.setColor(errorRed)
 			.setTimestamp()
 			.setFooter(this.user.username, this.user.displayAvatarURL())
 			.setDescription(err);

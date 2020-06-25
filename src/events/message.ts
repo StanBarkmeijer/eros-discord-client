@@ -2,6 +2,7 @@ import ErosClient from "../models/discord/ErosClient";
 import { Message, MessageEmbed } from "discord.js";
 import NewMember from "../models/discord/Member";
 import NewGuild from "../models/discord/Guild";
+import { erosRed } from "../colors";
 
 export = async (client: ErosClient, message: Message) => {
     const prefix = (message.guild as NewGuild).getPrefix();
@@ -22,7 +23,7 @@ export = async (client: ErosClient, message: Message) => {
                 .updateMember(money + toAdd);
 
             const emb = new MessageEmbed()
-                .setColor("RED")
+                .setColor(erosRed)
                 .setDescription(`${message.author} earned: ${toAdd} coins 💸`)
 
             message.channel
