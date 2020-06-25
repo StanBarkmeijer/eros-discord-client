@@ -36,7 +36,7 @@ class NewMember extends GuildMember {
             userID: this.id,
             guildID: this.guild.id
         }).then((data: any) => {
-            this.money = data.balance ?? 0; 
+            this.money = data && data.balance ? data.balance : 0; 
         }).catch((err: Error) => console.log(err));
         
         return this.money;
