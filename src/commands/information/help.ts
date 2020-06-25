@@ -2,7 +2,7 @@ import ErosClient from "../../models/discord/ErosClient";
 import Command from "../../models/command/Command.class";
 
 import { Message, MessageEmbed } from "discord.js";
-import { readdirSync, readdir } from "fs";
+import { readdirSync } from "fs";
 
 class help extends Command {
 
@@ -32,6 +32,7 @@ function getAll(client: ErosClient): MessageEmbed {
     }
 
     const info = readdirSync("../src/commands")
+        .filter((cat: string) => cat !== "dev")
         .map((cat: string) => `**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
         .reduce((string: string, category: string) => string + "\n" + category);
 
