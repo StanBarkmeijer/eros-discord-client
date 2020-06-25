@@ -33,7 +33,7 @@ class Eval extends Command {
                 .send(clean(evaled), { code: "xl" })
                 .catch((err: Error) => message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``));
         } catch (e) {
-            message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(e)}\n\`\`\``)
+            message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(e)}\n\`\`\``);
         }
     }
 }
