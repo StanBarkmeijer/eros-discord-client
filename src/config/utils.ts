@@ -1,7 +1,7 @@
 import { Message, GuildMember } from "discord.js";
 
 const utils = {
-    getMemberFromMessage: (message: Message): GuildMember => {
+    getMemberFromMessage: (message: Message, index: number): GuildMember => {
         const args = message.content
             .slice("<".length)
             .trim()
@@ -12,8 +12,8 @@ const utils = {
 
         if (message.mentions.members.size > 0) {
             member = message.mentions.members.first();
-        } else if (args[0]) {
-            member = message.guild.members.cache.get(args[0]);
+        } else if (args[index]) {
+            member = message.guild.members.cache.get(args[index]);
         }
 
         return member ?? message.member;

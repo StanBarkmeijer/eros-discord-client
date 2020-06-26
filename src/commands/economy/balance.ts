@@ -17,7 +17,7 @@ class balance extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        const member: NewMember = getMemberFromMessage(message) as NewMember;
+        const member: NewMember = getMemberFromMessage(message, 0) as NewMember;
 
         const embed: MessageEmbed = new MessageEmbed()
             .setColor(erosRed)

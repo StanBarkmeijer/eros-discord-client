@@ -59,7 +59,7 @@ class NewGuild extends Guild {
             ).then((data: any) =>  this.prefix = data.prefix )
              .catch((err: Error) => Promise.reject(err));
 
-            return Promise.resolve(`Old prefix: \`${this.getPrefix()}\`\nNew prefix: \`${prefix}\``);
+            return Promise.resolve(`Old prefix: \`${this.getPrefix()}\`\nNew prefix set to: \`${prefix}\``);
         }
     }
 
@@ -76,7 +76,7 @@ class NewGuild extends Guild {
 
         if (oldLog.id === newLog.id) return Promise.reject(`You tried to set the new log channel to the same log channel as before.`);
 
-        return Promise.resolve(`Old log channel: \`${oldLog.name}\`\nNew log channel: \`${newLog.name}\``);
+        return Promise.resolve(`Old log channel: \`${oldLog.name}\`\nNew log channel set to: \`${newLog.name}\``);
     }
 
 }

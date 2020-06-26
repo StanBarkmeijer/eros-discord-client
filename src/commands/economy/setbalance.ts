@@ -13,7 +13,7 @@ class setbalance extends Command {
             aliases: ['setbal'], 
             description: 'Set the balance of the member\nIf no person was mentioned, set balance to yourself', 
             category: 'economy', 
-            usage: 'setbalance [ID | MENTION]', 
+            usage: 'setbalance <amount> [ID | MENTION]', 
             permissionLevel: 'MANAGE_GUILD'
         });
     }
@@ -33,7 +33,7 @@ class setbalance extends Command {
             return this.client.warning(message.channel, "You can't set the balance below **0**");
         }
 
-        const member: NewMember = getMemberFromMessage(message) as NewMember;
+        const member: NewMember = getMemberFromMessage(message, 0) as NewMember;
 
         const embed: MessageEmbed = new MessageEmbed()
             .setColor(succesGreen)

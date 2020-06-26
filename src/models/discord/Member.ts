@@ -50,7 +50,7 @@ class NewMember extends GuildMember {
         ).then((data: any) => this.money = data.balance)
          .catch((err: Error) => Promise.reject(err));
 
-        return Promise.resolve(`Old balance: \`${this.getMoney()}\`\nNew balance: \`${newMoney}\``)
+        return Promise.resolve(`Old balance: \`${this.getMoney()}\`\nNew balance set to: \`${newMoney}\``)
     }
 
 }
