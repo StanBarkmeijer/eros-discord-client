@@ -33,7 +33,7 @@ class setbalance extends Command {
             return this.client.warning(message.channel, "You can't set the balance below **0**");
         }
 
-        const member: NewMember = getMemberFromMessage(message, 0) as NewMember;
+        const member: NewMember = getMemberFromMessage(message, 1) as NewMember;
 
         const embed: MessageEmbed = new MessageEmbed()
             .setColor(succesGreen)
