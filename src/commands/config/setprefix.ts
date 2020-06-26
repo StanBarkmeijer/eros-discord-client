@@ -8,11 +8,11 @@ class prefix extends Command {
 
     constructor(client: ErosClient) {
         super(client, {
-            name: 'prefix', 
-            aliases: ['setprefix'], 
+            name: 'setprefix', 
+            aliases: ['prefix'], 
             description: 'Sets the server prefix', 
             category: 'config', 
-            usage: 'prefix <PREFIX>', 
+            usage: 'setprefix <PREFIX>', 
             permissionLevel: 'MANAGE_GUILD'
         });
     }

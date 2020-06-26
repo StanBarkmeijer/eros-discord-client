@@ -8,8 +8,8 @@ class logchannel extends Command {
 
     constructor(client: ErosClient) {
         super(client, {
-            name: 'logchannel', 
-            aliases: ['setlogchannel', 'setlog'], 
+            name: 'setlogchannel', 
+            aliases: ['logchannel', 'setlog'], 
             description: 'Set the logging channel of the server.\nIf no channel was provided, set to the channel the message was set in', 
             category: 'config', 
             usage: 'logchannel [ID | MENTION]', 

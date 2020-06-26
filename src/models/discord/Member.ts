@@ -42,15 +42,15 @@ class NewMember extends GuildMember {
         return this.money;
     }
 
-    public updateMember(newMoney: number) {
-        MemberModel.findOneAndUpdate({
-            userID: this.id,
-            guildID: this.guild.id
-        }, { balance: newMoney },
-        { new: true, upsert: true })
-            .then((data: any) => {
-                this.money = data.balance
-            }).catch((err: Error) => console.log(err));
+    public async setBalance(newMoney: number): Promise<string> {
+        MemberModel.findOneAndUpdate(
+            { userID: this.id, guildID: this.guild.id },
+            { balance: newMoney },
+            { new: true, upsert: true }
+        ).then((data: any) => this.money = data.balance)
+         .catch((err: Error) => Promise.reject(err));
+
+        return Promise.resolve(`Old balance: \`${this.getMoney()}\`\nNew balance: \`${newMoney}\``)
     }
 
 }

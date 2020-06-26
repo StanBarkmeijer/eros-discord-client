@@ -16,7 +16,7 @@ export = async (client: ErosClient, message: Message) => {
         if (chance) {
             const toAdd: number = (Math.random() * 50)|0;
             (message.member as NewMember)
-                .updateMember(money + toAdd);
+                .setBalance(money + toAdd);
 
             const emb = new MessageEmbed()
                 .setColor(erosRed)
