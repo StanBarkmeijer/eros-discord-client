@@ -45,7 +45,7 @@ class userinfo extends Command {
             if (presence.name === "Custom Status") {
                 userInfo += `\n_Custom status:_ ${presence.state}`;
             } else {
-                userInfo += `\n_${presence.type.substring(0, 1) + presence.type.slice(1).toLowerCase()}:_ ${presence.name}`;
+                userInfo += `\n_${presence.type[0] + presence.type.slice(1).toLowerCase()}:_ ${presence.name}`;
             }
         }
         

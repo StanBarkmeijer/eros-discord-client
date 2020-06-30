@@ -7,7 +7,7 @@ const GuildModel: Model<Document> = require("../../models/db/Guild.model");
 class NewGuild extends Guild {
 
     public prefix: string;
-    public logChannel: Channel | null;
+    public logChannel: Channel;
 
     constructor(client: ErosClient, data: object) {
         super(client, data);
@@ -44,9 +44,16 @@ class NewGuild extends Guild {
     public getLogChannel(): string {
         GuildModel.findOne({
             guildID: this.id
-        }).then((data: any) => this.logChannel = this.channels.cache.get(data.logChannel));
+        }).then((data: any) => {
+            if (data.logChannel === null) {
+                this.logChannel = data.logChannel;
+            } else {
+                this.logChannel = this.channels.cache.get(data.logChannel)
+            }
+        });
 
-        return this.logChannel.id;
+        if (!this.logChannel) return null;
+        else return this.logChannel.id;
     }
 
     public async setPrefix(prefix: string): Promise<string> {

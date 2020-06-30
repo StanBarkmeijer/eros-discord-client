@@ -12,6 +12,7 @@ const GuildSchema: Schema = new Schema({
     },
     logChannel: {
         type: String,
+        default: null,
         required: [ false ]
     }
 });
