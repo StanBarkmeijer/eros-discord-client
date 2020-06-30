@@ -41,7 +41,7 @@ export = async (client: ErosClient, message: Message) => {
 
     if (command) {
         if (!message.member.hasPermission(command.permissionLevel)) {
-            client.warning(message.channel, `You don't have permission: ${command.permissionLevel}`);
+            client.warning(message.channel, `You don't have permission: **${command.permissionLevel}**`);
         } else {
             command.run(message, args);
         }
