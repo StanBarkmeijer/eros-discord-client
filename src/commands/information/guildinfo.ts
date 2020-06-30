@@ -2,6 +2,7 @@ import ErosClient from "../../models/discord/ErosClient";
 import Command from "../../models/command/Command.class";
 import { Message, MessageEmbed, GuildChannel } from "discord.js";
 import NewGuild from "../../models/discord/Guild";
+import { stripIndents } from "common-tags";
 
 const getColors = require("get-image-colors");
 
@@ -24,22 +25,22 @@ class guildinfo extends Command {
         const voiceChannelSize: number = guild.channels.cache.filter((c: GuildChannel) => c.type === "voice").size;
 
         const guildInfo: string = 
-        `_Server name:_ ${guild.name}
-        _Server owner:_ ${guild.owner}
-        _Region:_ ${guild.region[0].toUpperCase() + guild.region.slice(1)}
-        _ID:_ ${guild.id}
-        _Members:_ ${guild.memberCount}
-        _Text channels:_ ${textChannelSize}
-        _Voice channels:_ ${voiceChannelSize}`;
+        `- Server name: ${guild.name}
+        -Server owner: ${guild.owner}
+        -Region: ${guild.region[0].toUpperCase() + guild.region.slice(1)}
+        -ID: ${guild.id}
+        -Members: ${guild.memberCount}
+        -Text channels: ${textChannelSize}
+        -Voice channels: ${voiceChannelSize}`;
 
         const configInfo: string = 
-        `_Prefix:_ ${guild.getPrefix()}
-        _Log channel:_ #${guild.getLogChannel() ? guild.channels.cache.get(guild.getLogChannel()).name : "N/A"}`;
+        `-Prefix: ${guild.getPrefix()}
+        -Log channel: #${guild.getLogChannel() ? guild.channels.cache.get(guild.getLogChannel()).name : "N/A"}`;
 
         const embed: MessageEmbed = new MessageEmbed()
             .setThumbnail(guild.iconURL({ format: "png", dynamic: true, size: 1024 }))
-            .addField("Information", guildInfo, true)
-            .addField("Configuration", configInfo, true);
+            .addField("Information", stripIndents`${guildInfo}`, true)
+            .addField("Configuration", stripIndents`${configInfo}`, true);
 
         if (guild.banner) {
             embed.setImage(guild.banner);

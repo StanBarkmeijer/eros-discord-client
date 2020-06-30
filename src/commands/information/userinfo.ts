@@ -4,6 +4,7 @@ import { Message, MessageEmbed, Role, Activity } from "discord.js";
 import NewMember from "../../models/discord/Member";
 import { getMemberFromMessage } from "../../config/utils";
 import { erosRed } from "../../colors";
+import { stripIndents } from "common-tags";
 
 class userinfo extends Command {
 
@@ -26,47 +27,47 @@ class userinfo extends Command {
             .join(", ");
 
         let serverInfo: string = 
-        `_Nickname:_ ${member.displayName}
-        _Join date:_ ${member.joinedAt.toLocaleString()}
-        _Roles:_ ${roles.length > 0 ? roles : "None"}
-        _Money:_ ${member.getMoney()} 💸`;
+        `-Nickname: ${member.displayName}
+        -Join date: ${member.joinedAt.toLocaleString()}
+        -Roles: ${roles.length > 0 ? roles : "None"}
+        -Money: ${member.getMoney()} 💸`;
 
         if (member.premiumSince !== null) {
-            serverInfo += `\n_Server boost:_ ${member.premiumSince.toLocaleString()}`;
+            serverInfo += `\n-Server boost: ${member.premiumSince.toLocaleString()}`;
         }
 
         const presence: Activity = member.user.presence.activities[0];
 
         let userInfo: string =
-        `_Tag:_ ${member.user.tag}
-        _ID:_ ${member.user.id}`;
+        `-Tag: ${member.user.tag}
+        -ID: ${member.user.id}`;
         
         if (presence) {
             if (presence.name === "Custom Status") {
-                userInfo += `\n_Custom status:_ ${presence.state}`;
+                userInfo += `\n-Custom status: ${presence.state}`;
             } else {
-                userInfo += `\n_${presence.type[0] + presence.type.slice(1).toLowerCase()}:_ ${presence.name}`;
+                userInfo += `\n-${presence.type[0] + presence.type.slice(1).toLowerCase()}: ${presence.name}`;
             }
         }
         
         const embed: MessageEmbed = new MessageEmbed()
             .setColor(member.roles.highest.hexColor === "#000000" ? erosRed : member.roles.highest.hexColor)
             .setAuthor(member.displayName, member.user.displayAvatarURL({ dynamic: true }))
-            .addField("Server info", serverInfo, true)
-            .addField("User info", userInfo, true);
+            .addField("Server info", stripIndents`${serverInfo}`, true)
+            .addField("User info", stripIndents`${userInfo}`, true);
         
-        if (presence.name === "Spotify") {
+        if (presence && presence.name === "Spotify") {
             const spotifyInfo: string = 
-            `_Album:_ ${presence.assets.largeText}
-            _Song:_ ${presence.details}
-            _Artists:_ ${presence.state.replace(/;/g, " &")}`;
+            `-Album: ${presence.assets.largeText}
+            -Song: ${presence.details}
+            -Artists: ${presence.state.replace(/;/g, " &")}`;
 
             const image: string = presence.assets.largeImage 
                 ? presence.assets.largeImage.split(":")[1]
                 : presence.assets.smallImage.split(":")[1];
             
             embed
-                .addField("Spotify", spotifyInfo, false)
+                .addField("Spotify", stripIndents`${spotifyInfo}`, false)
                 .setThumbnail(`https://i.scdn.co/image/${image}`);
         }
 
