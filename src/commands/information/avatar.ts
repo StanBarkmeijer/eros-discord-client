@@ -1,6 +1,6 @@
 import ErosClient from "../../models/discord/ErosClient";
 import Command from "../../models/command/Command.class";
-import { Message, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed, GuildMember } from "discord.js";
 import utils from "../../config/utils";
 
 const getColors = require("get-image-colors");
@@ -18,9 +18,9 @@ class Avatar extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        const member = utils.getMemberFromMessage(message, 0);
+        const member: GuildMember = utils.getMemberFromMessage(message, 0);
         
-        const embed = new MessageEmbed()
+        const embed: MessageEmbed = new MessageEmbed()
             .setImage(member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setTitle(`${member.displayName}'s profile picture`);
 
