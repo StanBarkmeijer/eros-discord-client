@@ -35,12 +35,11 @@ function getAll(client: ErosClient): MessageEmbed {
             .join("\n");
     }
 
-    const info: string = readdirSync("../src/commands")
+    const info: void = readdirSync("../src/commands")
         .filter((cat: string) => cat !== "dev")
-        .map((cat: string) => `**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}\n`)
-        .reduce((string: string, category: string) => string + "\n" + category);
+        .forEach((cat: string) => embed.addField(`**${cat[0].toUpperCase() + cat.slice(1)}**`, commands(cat), true));
 
-    return embed.setDescription(info);
+    return embed;
 }
 
 function getCMD(client: ErosClient, searchQuery: string): MessageEmbed {
