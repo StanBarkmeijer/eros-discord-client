@@ -24,7 +24,9 @@ class help extends Command {
 
 function getAll(client: ErosClient): MessageEmbed {
     const embed: MessageEmbed = new MessageEmbed()
-        .setColor(erosRed);
+        .setColor(erosRed)
+        .setTimestamp()
+        .setFooter(`${client.commands.size} commands`, client.user.displayAvatarURL({ dynamic: true }));
 
     const commands = (category: string): string => {
         return client.commands
