@@ -19,7 +19,7 @@ class userinfo extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        const member: NewMember = getMemberFromMessage(message, 0) as NewMember;
+        const member: NewMember = getMemberFromMessage(message) as NewMember;
 
         const roles: string = member.roles.cache
             .filter((role: Role) => role.name !== "@everyone")

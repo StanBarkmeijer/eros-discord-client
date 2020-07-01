@@ -1,7 +1,7 @@
 import { Message, GuildMember } from "discord.js";
 
 const utils = {
-    getMemberFromMessage: (message: Message, index: number): GuildMember => {
+    getMemberFromMessage: (message: Message, index: number = 0): GuildMember => {
         const args = message.content
             .slice("<".length)
             .trim()

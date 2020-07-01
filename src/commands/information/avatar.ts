@@ -18,7 +18,7 @@ class Avatar extends Command {
     }
 
     async run(message: Message, args: string[]) {
-        const member: GuildMember = utils.getMemberFromMessage(message, 0);
+        const member: GuildMember = utils.getMemberFromMessage(message);
         
         const embed: MessageEmbed = new MessageEmbed()
             .setImage(member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
