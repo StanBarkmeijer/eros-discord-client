@@ -47,10 +47,10 @@ class guildinfo extends Command {
         }
 
         getColors(guild.iconURL({ format: "png" })).then((colors: any) => {
-            message.channel.send(
-                embed.setColor(colors.map((color: any) => color.hex())[0])
-            );
+            embed.setColor(colors.map((color: any) => color.hex())[0])
         });
+        
+        message.channel.send(embed);
     }
 }
 
