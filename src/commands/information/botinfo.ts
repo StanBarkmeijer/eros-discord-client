@@ -1,8 +1,6 @@
 import ErosClient from "../../models/discord/ErosClient";
 import Command from "../../models/command/Command.class";
 import * as os from 'os';
-import * as osUtils from 'os-utils';
-import * as usage from 'usage';
 
 import { Message, MessageEmbed } from "discord.js";
 import { erosRed } from "../../colors";
