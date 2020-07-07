@@ -63,6 +63,8 @@ function getCMD(client: ErosClient, searchQuery: string): MessageEmbed {
     if (command.usage) {
         info += `\n**Usage**: ${command.usage}`;
         embed.setFooter(`Syntax: <> = required, [] = optional`);
+    } else {
+        info += `\n**Usage**: ${command.name}`
     }
 
     embed.setTitle(`${command.name.charAt(0).toUpperCase() + command.name.slice(1)}`);

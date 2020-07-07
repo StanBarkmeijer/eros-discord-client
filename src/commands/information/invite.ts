@@ -10,8 +10,7 @@ class invite extends Command {
             name: 'invite', 
             aliases: ['botinvite', 'botinv', 'inv'], 
             description: 'Generates an invite for the bot', 
-            category: 'information', 
-            usage: 'invite'
+            category: 'information'
         });
     }
 

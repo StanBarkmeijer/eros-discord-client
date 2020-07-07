@@ -14,8 +14,7 @@ class guildinfo extends Command {
             name: 'guildinfo', 
             aliases: ['guild', 'serverinfo', 'server', 'serverinf', 'guildinf'], 
             description: 'Sends the information of the server', 
-            category: 'information', 
-            usage: 'guildinfo'
+            category: 'information'
         });
     }
 
