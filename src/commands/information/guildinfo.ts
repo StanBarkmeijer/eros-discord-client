@@ -3,6 +3,7 @@ import Command from "../../models/command/Command.class";
 import { Message, MessageEmbed, GuildChannel } from "discord.js";
 import NewGuild from "../../models/discord/Guild";
 import { stripIndents } from "common-tags";
+import { erosRed } from "../../colors";
 
 const getColors = require("get-image-colors");
 
@@ -13,8 +14,7 @@ class guildinfo extends Command {
             name: 'guildinfo', 
             aliases: ['guild', 'serverinfo', 'server', 'serverinf', 'guildinf'], 
             description: 'Sends the information of the server', 
-            category: 'information', 
-            usage: 'guildinfo'
+            category: 'information'
         });
     }
 
@@ -46,10 +46,14 @@ class guildinfo extends Command {
             embed.setImage(guild.banner);
         }
 
-        getColors(guild.iconURL({ format: "png" })).then((colors: any) => {
-            embed.setColor(colors.map((color: any) => color.hex())[0])
-        });
-        
+        try {
+            getColors(guild.iconURL({ format: "png" })).then((colors: any) => {
+                embed.setColor(colors.map((color: any) => color.hex())[0]);
+            });
+        } catch (e) {
+            embed.setColor(erosRed);
+        }
+
         message.channel.send(embed);
     }
 }
