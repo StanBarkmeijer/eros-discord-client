@@ -28,5 +28,7 @@ export = async (client: ErosClient, oldChannel: GuildChannel, newChannel: GuildC
         .setColor(warningOrange)
         .setDescription(stripIndents`${str}`);
 
-    logChannel.send(embed);
+    logChannel
+        .send(embed)
+        .catch(()=>{});
 }

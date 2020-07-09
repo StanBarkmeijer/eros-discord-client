@@ -24,5 +24,7 @@ export = async (client: ErosClient, channel: GuildChannel) => {
         .setColor(errorRed)
         .setDescription(stripIndents`${str}`);
 
-    logChannel.send(embed);
+        logChannel
+            .send(embed)
+            .catch(()=>{});
 }

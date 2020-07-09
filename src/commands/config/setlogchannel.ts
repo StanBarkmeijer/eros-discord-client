@@ -27,7 +27,7 @@ class logchannel extends Command {
         if (message.mentions.channels.size > 0) {
             channel = message.mentions.channels.first().id;
         } else {
-            if (args[0]) {
+            if (args[0] && message.guild.channels.cache.get(args[0])) {
                 channel = args[0];
             }
         }

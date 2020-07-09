@@ -52,7 +52,7 @@ class NewGuild extends Guild {
             }
         });
 
-        if (!this.logChannel) return null;
+        if (!this.logChannel || !this.channels.cache.get(this.logChannel.id)) return null;
         else return this.logChannel.id;
     }
 
@@ -81,9 +81,9 @@ class NewGuild extends Guild {
         const oldLog = this.channels.cache.get(this.getLogChannel());
         const newLog = this.channels.cache.get(channel);
 
-        if (oldLog.id === newLog.id) return Promise.reject(`You tried to set the new log channel to the same log channel as before.`);
+        if (oldLog && oldLog.id === newLog.id) return Promise.reject(`You tried to set the new log channel to the same log channel as before.`);
 
-        return Promise.resolve(`Old log channel: \`${oldLog.name}\`\nNew log channel set to: \`${newLog.name}\``);
+        return Promise.resolve(`Old log channel: \`${oldLog ? oldLog.name : "N/A"}\`\nNew log channel set to: \`${newLog.name}\``);
     }
 
 }
