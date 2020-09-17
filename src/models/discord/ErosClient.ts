@@ -1,4 +1,4 @@
-import { Client, MessageEmbed, Collection, DMChannel, TextChannel, NewsChannel } from "discord.js";
+import { Client, MessageEmbed, Collection, DMChannel, TextChannel, NewsChannel, Message } from "discord.js";
 import Command from "../command/Command.class";
 import { readdirSync } from "fs";
 import logger from "../../config/logger";
@@ -19,34 +19,34 @@ class ErosClient extends Client {
 	}
 
 
-	public warning(channel: TextChannel | DMChannel | NewsChannel, err: string) {
+	public warning(channel: TextChannel | DMChannel | NewsChannel, err: string): Promise<Message> {
 		const embed: MessageEmbed = new MessageEmbed()
 			.setColor(warningOrange)
 			.setTimestamp()
 			.setFooter(this.user.username, this.user.displayAvatarURL())
 			.setDescription(err);
 
-		channel.send(embed);
+		return channel.send(embed);
 	}
 
-	public error(channel: TextChannel | DMChannel | NewsChannel, err: string) {
+	public error(channel: TextChannel | DMChannel | NewsChannel, err: string): Promise<Message> {
 		const embed: MessageEmbed = new MessageEmbed()
 			.setColor(errorRed)
 			.setTimestamp()
 			.setFooter(this.user.username, this.user.displayAvatarURL())
 			.setDescription(err);
 
-		channel.send(embed);
+		return channel.send(embed);
 	}
 
-	public succes(channel: TextChannel | DMChannel | NewsChannel, succes: string) {
+	public succes(channel: TextChannel | DMChannel | NewsChannel, succes: string): Promise<Message> {
 		const embed: MessageEmbed = new MessageEmbed()
 			.setColor(succesGreen)
 			.setTimestamp()
 			.setFooter(this.user.username, this.user.displayAvatarURL())
 			.setDescription(succes);
 
-		channel.send(embed);
+		return channel.send(embed);
 	}
 
 	private loadCommands(): Collection<string, Command> {
